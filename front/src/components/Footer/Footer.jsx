@@ -1,11 +1,19 @@
 import React from 'react'
+import { Container, Row, Col } from 'react-bootstrap'
 
 const Footer = () => {
-	return (
-		<>
-			<h1>Footer</h1>
-		</>
-	)
+  return (
+    <footer>
+      <Container>
+	      <Row>
+		      <Col className='text-center py-3'>
+			      Wszelkie prawa zastrzeżone &copy; Gawron.me
+		      </Col>
+
+	      </Row>
+      </Container>
+    </footer>
+  )
 }
 
 export default Footer
