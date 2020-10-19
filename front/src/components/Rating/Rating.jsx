@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Rating = ({ value, text }) => {
+const Rating = ({ value, text, color }) => {
   return (
     <div className='rating'>
       <span>
-        <i
+        <i style={{color}}
           className={
             value >= 1
               ? 'fas fa-star'
@@ -15,7 +15,7 @@ const Rating = ({ value, text }) => {
         />
       </span>
       <span>
-        <i
+        <i style={{color}}
           className={
             value >= 2
               ? 'fas fa-star'
@@ -26,7 +26,7 @@ const Rating = ({ value, text }) => {
         />
       </span>
       <span>
-        <i
+        <i style={{color}}
           className={
             value >= 3
               ? 'fas fa-star'
@@ -37,7 +37,7 @@ const Rating = ({ value, text }) => {
         />
       </span>
       <span>
-        <i
+        <i style={{color}}
           className={
             value >= 4
               ? 'fas fa-star'
@@ -48,7 +48,7 @@ const Rating = ({ value, text }) => {
         />
       </span>
       <span>
-        <i
+        <i style={{color}}
           className={
             value >= 5
               ? 'fas fa-star'
@@ -61,5 +61,9 @@ const Rating = ({ value, text }) => {
       <span>{text && text}</span>
     </div>
   )
+}
+
+Rating.defaultProps = {
+  color: '#ecdd53'
 }
 export default Rating
