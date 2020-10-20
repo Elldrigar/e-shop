@@ -9,7 +9,52 @@ const ProductPage = ({ match }) => {
 
   return (
     <>
-      <Link to='/' className='btn btn-light my-3'>Wróć</Link>
+      <Link to='/' className='btn btn-light my-3'>
+        Wróć
+      </Link>
+      <Row>
+        <Col md={6}>
+          <Image src={product.image} alt={product.name} fluid />
+        </Col>
+        <Col md={3}>
+          <ListGroup variant='flush'>
+            <ListGroup.Item>
+              <h3>{product.name}</h3>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Rating
+                value={product.rating}
+                text={` ${product.numReviews} opini`}
+              />
+            </ListGroup.Item>
+            <ListGroup.Item>Cena: {product.price} zł</ListGroup.Item>
+            <ListGroup.Item>{product.description}</ListGroup.Item>
+          </ListGroup>
+        </Col>
+        <Col md={3}>
+          <Card>
+            <ListGroup variant='flush'>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Cena:</Col>
+                  <Col>
+                    <strong>{product.price} zł</strong>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Dostępność:</Col>
+                  <Col>{product.countInStock > 0 ? 'Dostępny' : 'Brak'}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Button className='btn-block' type='button' disabled={product.countInStock === 0}>Dodaj do Koszyka</Button>
+              </ListGroup.Item>
+            </ListGroup>
+          </Card>
+        </Col>
+      </Row>
     </>
   )
 }
