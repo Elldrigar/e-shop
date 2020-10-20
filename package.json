@@ -1,0 +1,22 @@
+{
+  "name": "e-shop",
+  "version": "0.1.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node back/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elldrigar/e-shop.git"
+  },
+  "author": "Elldrigar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Elldrigar/e-shop/issues"
+  },
+  "homepage": "https://github.com/Elldrigar/e-shop#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
