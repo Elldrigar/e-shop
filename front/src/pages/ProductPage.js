@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Rating from '../components/Rating/Rating'
-import axios from "axios";
-
+import axios from 'axios'
 
 const ProductPage = ({ match }) => {
   const [product, setProduct] = useState({})
@@ -14,7 +13,7 @@ const ProductPage = ({ match }) => {
       setProduct(data)
     }
     fetchProduct()
-  }, [])
+  }, [match])
 
   return (
     <>
@@ -58,7 +57,13 @@ const ProductPage = ({ match }) => {
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
-                <Button className='btn-block' type='button' disabled={product.countInStock === 0}>Dodaj do Koszyka</Button>
+                <Button
+                  className='btn-block'
+                  type='button'
+                  disabled={product.countInStock === 0}
+                >
+                  Dodaj do Koszyka
+                </Button>
               </ListGroup.Item>
             </ListGroup>
           </Card>
