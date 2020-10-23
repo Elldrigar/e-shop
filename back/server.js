@@ -1,9 +1,11 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const products = require('./data/products')
+const connectDB = require('./config/db')
 const app = express()
 
 dotenv.config()
+connectDB()
 
 app.get('/', (req, res) => {
   res.send('API 👍🏻')
