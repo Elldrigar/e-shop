@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: '1',
     name: 'Produkt numer jeden nazwa',
     image: '/images/dummy.png',
     description:
@@ -13,7 +12,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '2',
     name: 'Produkt numer dwa nazwa',
     image: '/images/dummy.png',
     description:
@@ -26,7 +24,6 @@ const products = [
     numReviews: 8,
   },
   {
-    _id: '3',
     name: 'Produkt numer trzy nazwa',
     image: '/images/dummy.png',
     description:
@@ -39,7 +36,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '4',
     name: 'Produkt Numer cztery nazwa',
     image: '/images/dummy.png',
     description:
@@ -52,7 +48,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '5',
     name: 'Produkt numer pięć nazwa',
     image: '/images/dummy.png',
     description:
@@ -65,7 +60,6 @@ const products = [
     numReviews: 10,
   },
   {
-    _id: '6',
     name: 'Produkt numer sześć nazwa',
     image: '/images/dummy.png',
     description:
