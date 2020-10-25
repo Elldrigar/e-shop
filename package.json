@@ -7,7 +7,9 @@
     "start": "node back/server.js",
     "server": "nodemon back/server.js",
     "client": "npm start --prefix front",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node back/seeder",
+    "data:destroy": "node back/seeder -d"
   },
   "repository": {
     "type": "git",
