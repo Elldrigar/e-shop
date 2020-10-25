@@ -3,7 +3,7 @@ const app = express()
 const dotenv = require('dotenv')
 const connectDB = require('./config/db')
 
-const productRouts = require('routes/productRoute')
+const productRoute = require('./routes/productRoute')
 
 dotenv.config()
 connectDB()
@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
   res.send('API 👍🏻')
 })
 
-app.use('/api/products', productRouts)
+app.use('/api/products', productRoute)
 
 const PORT = process.env.PORT || 5555
 
