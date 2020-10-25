@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const dotenv = require('dotenv')
 const connectDB = require('./config/db')
+const { notFound, errorHandler } = require('./middleware/errorHandler')
 
 const productRoute = require('./routes/productRoute')
 
@@ -13,6 +14,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/products', productRoute)
+app.use(notFound)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5555
 
