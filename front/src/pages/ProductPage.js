@@ -7,15 +7,19 @@ import { Rating } from '../components/Rating'
 import { Message } from '../components/Message'
 import { Loader } from '../components/Loader'
 
-const ProductPage = ({ match }) => {
+const ProductPage = ({ history, match }) => {
   const [qty, setQty] = useState(0)
   const dispatch = useDispatch()
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
+
   useEffect(() => {
     dispatch(listProductDetails(match.params.id))
   }, [dispatch, match])
 
+const addToCartHandler = () => {
+    history.push(`/cart/${match.params.id}?qty=${qty}`)
+}
   return (
     <>
       <Link to='/' className='btn btn-light my-3'>
@@ -84,6 +88,7 @@ const ProductPage = ({ match }) => {
                 )}
                 <ListGroup.Item>
                   <Button
+                    onClick={addToCartHandler}
                     className='btn-block'
                     type='button'
                     disabled={product.countInStock === 0}
