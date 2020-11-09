@@ -7,17 +7,30 @@ import Message from '../components/Message/Message'
 import Loader from '../components/Loader/Loader'
 import { login } from '../actions/userActions'
 
-const LoginPage = ({ location }) => {
+const LoginPage = ({ location, history }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+	const dispatch = useDispatch()
+	const userLogin = useSelector(state => state.userLogin)
+	const { loading, error, userInfo } = userLogin
 	const redirect = location.search ? location.search.split('=')[1] : '/'
+
+	useEffect(() => {
+		if(userInfo) {
+			history.push(redirect)
+		}
+	},[history, userInfo, redirect])
+
 	const submitHandler = (event) => {
   	event.preventDefault()
+		dispatch(login(email, password))
 	}
 
   return (
     <FormContainer>
       <h1>Zaloguj</h1>
+	    {error && <Message variant='danger'>{error}</Message>}
+	    {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='email'>
           <Form.Label>E-mail</Form.Label>
