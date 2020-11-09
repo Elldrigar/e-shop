@@ -1,25 +1,27 @@
 import React from 'react'
-import { BrowserRouter as Router, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
-import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
 import ProductPage from './pages/ProductPage'
 import CartPage from './pages/CartPage'
+import HomePage from './pages/HomePage'
 
 const App = () => {
   return (
-      <Router>
-        <Header />
-        <main className='py-2'>
-          <Container>
-            <Route path='/' component={HomePage} exact/>
-            <Route path='/product/:id' component={ProductPage} />
-            <Route path='/cart/:id?' component={CartPage} />
-          </Container>
-        </main>
-        <Footer />
-      </Router>
+    <Router>
+      <Header />
+      <main className='py-2'>
+        <Container>
+          <Route path='/login' component={LoginPage} />
+          <Route path='/product/:id' component={ProductPage} />
+          <Route path='/cart/:id?' component={CartPage} />
+          <Route path='/' component={HomePage} exact />
+        </Container>
+      </main>
+      <Footer />
+    </Router>
   )
 }
 
