@@ -26,24 +26,29 @@ const RegisterPage = ({ location, history }) => {
 
   const submitHandler = (event) => {
     event.preventDefault()
-    //DISPATCH REGISTER
+    if (password !== confirmPassword) {
+      setMessage('Hasła nie są takie same!')
+    } else {
+      dispatch(register(name, email, password))
+    }
   }
 
   return (
     <FormContainer>
       <h1>Zarejestruj się</h1>
+      {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
-	      <Form.Group controlId='name'>
-		      <Form.Label>Imię</Form.Label>
-		      <Form.Control
-			      type='name'
-			      placeholder='Wprowadź imię'
-			      value={email}
-			      onChange={(e) => setName(e.target.value)}
-		      />
-	      </Form.Group>
+        <Form.Group controlId='name'>
+          <Form.Label>Imię</Form.Label>
+          <Form.Control
+            type='name'
+            placeholder='Wprowadź imigę'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </Form.Group>
         <Form.Group controlId='email'>
           <Form.Label>E-mail</Form.Label>
           <Form.Control
@@ -62,15 +67,15 @@ const RegisterPage = ({ location, history }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-	      <Form.Group controlId='confirmPassword'>
-		      <Form.Label>Potwierdź Hasło</Form.Label>
-		      <Form.Control
-			      type='password'
-			      placeholder='Potwierdź hasło'
-			      value={confirmPassword}
-			      onChange={(e) => setConfirmPassword(e.target.value)}
-		      />
-	      </Form.Group>
+        <Form.Group controlId='confirmPassword'>
+          <Form.Label>Potwierdź Hasło</Form.Label>
+          <Form.Control
+            type='password'
+            placeholder='Potwierdź hasło'
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </Form.Group>
         <Button type='submit' variant='primary'>
           Zarejestruj się
         </Button>
