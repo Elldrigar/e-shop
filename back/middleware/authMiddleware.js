@@ -22,7 +22,7 @@ const protect = asyncHandler(async (req, res, next) => {
   }
   if (!token) {
     res.status(401)
-    throw new Error('Brak zutoryzacji!')
+    throw new Error('Brak autoryzacji!')
   }
 })
 
