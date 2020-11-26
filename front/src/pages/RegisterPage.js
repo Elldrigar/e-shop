@@ -44,7 +44,7 @@ const RegisterPage = ({ location, history }) => {
           <Form.Label>Imię</Form.Label>
           <Form.Control
             type='name'
-            placeholder='Wprowadź imigę'
+            placeholder='Wprowadź imię'
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
