@@ -6,6 +6,10 @@ import Message from '../components/Message/Message'
 import CheckoutSteps from '../components/CheckoutSteps/CheckoutSteps'
 
 const PlaceOrderPage = () => {
+  const placeOrderHandler = () => {
+    console.log('order')
+  }
+
   const cart = useSelector((state) => state.cart)
   return (
     <>
@@ -45,15 +49,59 @@ const PlaceOrderPage = () => {
                       <Col>
                         <Link to={`/product/${item.product}`}>{item.name}</Link>
                       </Col>
-	                    <Col md={4}>
-		                    {item.qty} x {item.price} zł = {item.qty * item.price} zł
-	                    </Col>
+                      <Col md={4}>
+                        {item.qty} x {item.price} zł = {item.qty * item.price}{' '}
+                        zł
+                      </Col>
                     </Row>
                   </ListGroup.Item>
                 ))}
               </ListGroup>
             )}
           </ListGroup.Item>
+        </Col>
+        <Col md={4}>
+          <Card>
+            <ListGroup variant='flush'>
+              <ListGroup.Item>
+                <h2>Podsumowanie</h2>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Przedmioty</Col>
+                  <Col>{cart.itemsPrice} zł</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Dostawa</Col>
+                  <Col>{cart.itemsShipping} zł</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Podatek</Col>
+                  <Col>{cart.itemsTax} zł</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Razem</Col>
+                  <Col>{cart.itemsTotal} zł</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Button
+                  type='button'
+                  className='btn-block'
+                  disabled={cart.cartItems === 0}
+                  onClicke={placeOrderHandler}
+                >
+                  ZAMAWIAM
+                </Button>
+              </ListGroup.Item>
+            </ListGroup>
+          </Card>
         </Col>
       </Row>
     </>
