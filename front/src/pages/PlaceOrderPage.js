@@ -8,16 +8,22 @@ import CheckoutSteps from '../components/CheckoutSteps/CheckoutSteps'
 const PlaceOrderPage = () => {
   const cart = useSelector((state) => state.cart)
   //CALCULATE PRICES
-  cart.itemsPrice = cart.cartItems.reduce(
-    (acc, item) => acc + item.price * item.qty,
-    0,
+  const addDecimals = (num) => {
+    return (Math.round(num * 100) / 100).toFixed(2)
+  }
+  cart.itemsPrice = addDecimals(
+    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0),
   )
-  cart.itemsShipping = cart.itemsPrice > 500 ? 0 : 29
-  cart.itemsTax = Number((0.07 * cart.itemsPrice).toFixed(2)) // JAKI PODATEK ? ^^
-	cart.itemsTotal = Number(cart.itemsPrice) + Number(cart.itemsShipping) + Number(cart.itemsTax)
-	const placeOrderHandler = () => {
-		console.log('order')
-	}
+  cart.itemsShipping = addDecimals(cart.itemsPrice > 500 ? 0 : 29)
+  cart.itemsTax = addDecimals(Number((0.07 * cart.itemsPrice).toFixed(2))) // JAKI PODATEK ? ^^
+  cart.itemsTotal = addDecimals(
+    Number(cart.itemsPrice) +
+      Number(cart.itemsShipping) +
+      Number(cart.itemsTax),
+  )
+  const placeOrderHandler = () => {
+    console.log('order')
+  }
   return (
     <>
       <CheckoutSteps stepOne stepTwo stepThree stepFour />
