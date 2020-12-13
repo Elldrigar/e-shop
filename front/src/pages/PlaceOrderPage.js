@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message/Message'
 import CheckoutSteps from '../components/CheckoutSteps/CheckoutSteps'
+import { createOrder } from '../actions/orderActions'
 
-const PlaceOrderPage = () => {
+const PlaceOrderPage = ({ history }) => {
+  const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart)
   //CALCULATE PRICES
   const addDecimals = (num) => {
@@ -21,8 +23,29 @@ const PlaceOrderPage = () => {
       Number(cart.itemsShipping) +
       Number(cart.itemsTax),
   )
+
+  const orderCreate = useSelector((state) => state.orderCreate)
+  const { order, success, error } = orderCreate
+
+  useEffect(() => {
+    if (success) {
+      history.push(`/order/${order._id}`)
+    }
+    // eslint-disable-next-line
+  }, [history, success])
+
   const placeOrderHandler = () => {
-    console.log('order')
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        itemsShipping: cart.itemsShipping,
+        itemsTax: cart.itemsTax,
+        itemsTotal: cart.itemsTotal,
+      }),
+    )
   }
   return (
     <>
@@ -104,11 +127,14 @@ const PlaceOrderPage = () => {
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
+                {error && <Message variant='danger'>{error}</Message>}
+              </ListGroup.Item>
+              <ListGroup.Item>
                 <Button
                   type='button'
                   className='btn-block'
                   disabled={cart.cartItems === 0}
-                  onClicke={placeOrderHandler}
+                  onClick={placeOrderHandler}
                 >
                   ZAMAWIAM
                 </Button>
