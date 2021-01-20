@@ -52,4 +52,4 @@ const getOrderbyId = asyncHandler(async (req, res) => {
   }
 })
 
-module.exports = { addOrderItems }
+module.exports = { addOrderItems, getOrderbyId }
